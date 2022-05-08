@@ -13,9 +13,9 @@
     </div>
     <div class="main">
         <!-- Read input from user -->
-        Input 1: <input type="number" name="input1"><br>
-        Input 2: <input type="number" name="input2"><br>
-        Select Operation: <select name="operation">
+        Input 1: <input type="number" name="input1" id="input1"><br>
+        Input 2: <input type="number" name="input2" id="input2"><br>
+        Select Operation: <select name="operation" onchange="selectOperation(event)">
             <option value="Select...">Select...</option>
             <option value="Add">Add</option>
             <option value="Subtract">Subtract</option>
@@ -23,8 +23,45 @@
             <option value="Divide">Divide</option>
 
         </select><br>
-        <button name="submit">Submit</button>
+        <button name="submit" onclick="calculate()">Submit</button>
         <button name="reset">Reset</button>
+        <div class="result">
+            <h2>Result :</h2>
+            <h3 id="result"></h3>
+        </div>
     </div>
+    <script>
+        var first_number = document.getElementsById("input1").value;
+        var second_number = document.getElementsById("input2").value;
+        console.log(first_number)
+
+        var operation_selection;
+        var result;
+        function selectOperation(e){
+             operation_selection = e.target.value;
+             console.log(operation_selection);
+        }
+        function calculate(){
+            switch (operation_selection){
+                case "Add":
+                    result = (Number(first_number) + Number(second_number));
+                    break;
+                case "Subtract":
+                    result = (first_number - second_number);
+                    break;
+                case "Multiply":
+                    result = (first_number * second_number);
+                case "Divide":
+                    result = (first_number/second_number);
+                    break;
+                default:
+                    alert("Please select a valid input");
+            }
+            console.log(first_number);
+            console.log(second_number);
+            console.log(result);
+            document.getElementById("result").value = result;
+        }
+    </script>
 </body>
 </html>
